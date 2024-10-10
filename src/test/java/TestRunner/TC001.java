@@ -4,13 +4,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
 import com.Magento_API.Browser;
 import com.Magento_Base.MagentoBase;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
+import com.Magento_Base.MagentoListeners;
 
+
+@Listeners(MagentoListeners.class)
 public class TC001 extends MagentoBase{
 	/**
 	 * Steps
@@ -25,36 +27,66 @@ public class TC001 extends MagentoBase{
 	 * @throws IOException
 	 * @throws InterruptedException 
 	 */
-
-	public static void main(String[] args) throws FileNotFoundException, IOException, InterruptedException {
+	
+	@Test(priority = 2)
+	public void login() throws FileNotFoundException, IOException, InterruptedException {
 		
-		MagentoBase base = new MagentoBase();
-		 base.extentReport();
-		 ExtentTest test=extent.createTest("TC001Login");
+		
+		
 		 
-		String url =base.readProperty("url");
-		base.SetUp(Browser.chrome, url);
-		String userName = base.readProperty("user");
+		 
+		String url =readProperty("url");
+		SetUp(Browser.chrome, url);
+		String userName = readProperty("user");
 		
 		
 		WebElement userid = driver.findElementByXPath("//input[@name='uid']");
 		
 		userid.sendKeys(userName);
-		String password = base.readProperty("password");
+		String password = readProperty("password");
 		WebElement pass= driver.findElementByXPath("//input[@name='password']");
 	
 		pass.sendKeys(password);
 		driver.findElementByXPath("//input[@name='btnLogin']").click();
-		base.takescreenShot("LoginTest");
-		test.log(Status.PASS, "Login Sucesful");
-		extent.flush();
+		
+		
+		
 		Thread.sleep(3000);
-		driver.close();
-		
-		
-		
-		
-
+	
 	}
+	@Test(priority = 1)
+	public  void verifyLogin() throws FileNotFoundException, IOException {
+		
+		
+		
+		String url = readProperty("url");
+		SetUp(Browser.chrome, url);
+		String username = readProperty("user");
+		String password = readProperty("password");
+
+		WebElement userid = driver.findElementByXPath("//input[@name='ui']");
+		
+		userid.sendKeys(username);
+		
+		WebElement pass= driver.findElementByXPath("//input[@name='password']");
+		
+		pass.sendKeys(password);
+		
+		driver.findElementByXPath("//input[@name='btnLogin']").click();
+		WebElement title = driver.findElementByXPath("//h2[@class='barone']");
+		String text = title.getText();
+		String expectedText="Guru99 Bank";
+		if(text.equals(expectedText)) {
+			System.out.println("Expected and actual title are same");
+		}
+		else
+		{
+			System.out.println("Expected and actual title are not same");
+		}
+		
+		
+	}
+	
+	
 
 }

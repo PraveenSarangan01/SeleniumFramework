@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
@@ -27,6 +28,7 @@ import com.Magento_API.Browser;
 import com.Magento_API.Locator;
 import com.Magento_API.MagentoAPI;
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
@@ -38,6 +40,7 @@ public class MagentoBase implements MagentoAPI {
 	WebDriverWait wait=null;
 	protected static ExtentReports extent;
 	
+	protected static ExtentTest exten;
 
 	public void setUp(String url) {
 		driver = new ChromeDriver();
@@ -165,11 +168,8 @@ public class MagentoBase implements MagentoAPI {
 		return ele.isDisplayed();
 	}
 	
-	public void takeScreenShot() throws IOException {
-		TakesScreenshot ts =(TakesScreenshot)driver;
-		File screenshotAs = ts.getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshotAs, new File("./snaps.img.png"));
-	}
+	
+	
 	public String readProperty( String value) throws FileNotFoundException, IOException {
 		Properties read = new Properties();
 		read.load(new FileInputStream("./config.property"));
@@ -182,7 +182,9 @@ public class MagentoBase implements MagentoAPI {
 	
 	public void takescreenShot(String methodName) throws IOException {
 		Date d= new Date();
-		String timeStamp = d.toString().replace(':','_').replace(" ", "");
+		SimpleDateFormat df= new SimpleDateFormat("YYYY_MM_dd_hh_mm_ss");
+		String timeStamp = df.format(d);
+		//String timeStamp = d.toString().replace(':','_').replace(" ", "");
 		TakesScreenshot ts = (TakesScreenshot)driver;
 		File screenshotAs = ts.getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(screenshotAs, new File("./snaps/"+methodName+timeStamp+".png"));
@@ -196,7 +198,8 @@ public class MagentoBase implements MagentoAPI {
 		
 		report.config().setDocumentTitle("Automation Test suite Report");
 		report.config().setReportName("Automation Test Report");
-		report.config().setTheme(Theme.STANDARD);report.config().setTimeStampFormat("EEEE , MMMM DD,YYYY, hh:mm a'('zzz')'");
+		report.config().setTheme(Theme.STANDARD);
+		report.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
 		
 		return extent;
 		
@@ -205,6 +208,7 @@ public class MagentoBase implements MagentoAPI {
 		extent.flush();
 
 	}
+	
 
 	
 /**
