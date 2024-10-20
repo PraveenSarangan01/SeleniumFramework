@@ -64,10 +64,10 @@ public void VerifyLogintakeScreen(String data[]) throws FileNotFoundException, I
 			// remain stores the "XXXX" in pattern mngrXXXX
 			String remain = dynamicText.substring(dynamicText.length()-4);
 			assertTrue(remain.matches(secondPattern));
-			TakeScreenShot();
+			
 			
 		}
-		driver.quit();
+		
 	}
 
 void TakeScreenShot() {

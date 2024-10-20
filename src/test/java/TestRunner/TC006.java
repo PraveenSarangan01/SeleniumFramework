@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.Magento_API.Browser;
 import com.Magento_API.Locator;
 import com.Magento_Base.MagentoBase;
 import com.Magento_Base.MagentoListeners;
@@ -30,7 +31,7 @@ public class TC006 extends MagentoBase {
 	 */
 @Test
 	void changePasswordAndLogin() throws InterruptedException {
-		SetBrowserAndUrl();
+		SetUp(Browser.chrome, readProperty("url"));
 		//login steps
 		
 		element(Locator.xpath, "//input[@name='uid']").sendKeys(readProperty("user"));
@@ -41,7 +42,7 @@ public class TC006 extends MagentoBase {
 		
 		
 		//navigate to manager page
-		element(Locator.xpath, "//a[text()='Manager']").click();
+		//element(Locator.xpath, "//a[text()='Manager']").click();
 	
 		
 		//click the change password link

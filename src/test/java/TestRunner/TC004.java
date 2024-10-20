@@ -64,7 +64,7 @@ public class TC004 extends MagentoBase {
 			
 			
 		}
-		driver.quit();
+	
 	}
 	}
 

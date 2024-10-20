@@ -10,7 +10,9 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
@@ -45,12 +47,18 @@ public class MagentoBase implements MagentoAPI {
     public static final String pattern = ":";
     public static final String firstPattern= "mngr";
     public static final String secondPattern = "[0-9]+";
-    public static final String oldpssword="Mngr@0012";
-    public static final String newpassword="Mng@r0002";
+    
+    //TC006
+    public static final String oldpssword="Rfid@123";
+    public static final String newpassword="Guru@123";
     public static final String expectedAlert="Old Password is incorrect";//Old Password is incorrect
     public static final String pageHeading="Change Password";
+    //TC007
+    public static final String tc7expectedPop="Password is Changed"; 
+    public static final String logOutPop= "You Have Succesfully Logged Out!!";
 
-
+//Tc008
+    public static final String expectedWelcomeMsg= "Welcome To Manager's Page of Guru99 Bank";
 	public void setUp(String url) {
 		driver = new ChromeDriver();
 		driver.get(url);
@@ -234,6 +242,33 @@ public class MagentoBase implements MagentoAPI {
 		
 	}
 
+	public void loginAsManager() {
+		SetUp(Browser.chrome, readProperty("url"));
+		//login steps
+		
+		element(Locator.xpath, "//input[@name='uid']").sendKeys(readProperty("user"));
+		
+		element(Locator.xpath, "//input[@name='password']").sendKeys(readProperty("password"));
+	
+		element(Locator.xpath, "//input[@name='btnLogin']").click();
+	}
+	
+	
+	public String handeAlert() {
+		wait.until(ExpectedConditions.alertIsPresent());
+		Alert a =driver.switchTo().alert();
+		String actualtext = a.getText();
+		a.accept();
+		return actualtext;
+			
+	}
+	
+	public void jsClick(WebElement ele) {
+		
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", ele);
+	
+	}
 	
 /**
  * To do:-

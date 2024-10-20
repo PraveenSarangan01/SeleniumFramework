@@ -67,7 +67,7 @@ public class TC003 extends MagentoBase {
 			System.out.println("failed : Title Not Verified"+actualTitle);
 		}
 	}
-	driver.quit();
+	
 }
 	
 }

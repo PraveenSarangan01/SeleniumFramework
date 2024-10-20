@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-10-20T21:32:32 IST" name="Default suite" finished-at="2024-10-20T21:32:49 IST" duration-ms="17584">
+  <suite started-at="2024-10-21T02:20:30 IST" name="Default suite" finished-at="2024-10-21T02:20:37 IST" duration-ms="7220">
     <groups>
     </groups>
-    <test started-at="2024-10-20T21:32:32 IST" name="Default test" finished-at="2024-10-20T21:32:49 IST" duration-ms="17584">
-      <class name="TestRunner.TC006">
-        <test-method signature="changePasswordAndLogin()[pri:0, instance:TestRunner.TC006@a530d0a]" started-at="2024-10-20T21:32:32 IST" name="changePasswordAndLogin" finished-at="2024-10-20T21:32:49 IST" duration-ms="17092" status="PASS">
+    <test started-at="2024-10-21T02:20:30 IST" name="Default test" finished-at="2024-10-21T02:20:37 IST" duration-ms="7220">
+      <class name="TestRunner.TC008">
+        <test-method signature="loginWithNewPassword()[pri:0, instance:TestRunner.TC008@a530d0a]" started-at="2024-10-21T02:20:30 IST" name="loginWithNewPassword" finished-at="2024-10-21T02:20:37 IST" duration-ms="7134" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- changePasswordAndLogin -->
-      </class> <!-- TestRunner.TC006 -->
+        </test-method> <!-- loginWithNewPassword -->
+      </class> <!-- TestRunner.TC008 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

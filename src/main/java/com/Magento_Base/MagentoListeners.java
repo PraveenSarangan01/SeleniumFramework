@@ -20,7 +20,7 @@ public class MagentoListeners extends MagentoBase implements ITestListener {
 
 	public void onTestSuccess(ITestResult result) {
 		test.log(Status.PASS,"Test Passed:"+ result.getMethod().getMethodName());
-		
+		driver.quit();
 		
 	}
 
@@ -33,6 +33,7 @@ public class MagentoListeners extends MagentoBase implements ITestListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		driver.quit();
 	}
 	
 		
