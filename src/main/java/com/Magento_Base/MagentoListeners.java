@@ -7,6 +7,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
 public class MagentoListeners extends MagentoBase implements ITestListener {
@@ -24,9 +25,10 @@ public class MagentoListeners extends MagentoBase implements ITestListener {
 	}
 
 	public void onTestFailure(ITestResult result) {
-		test.log(Status.FAIL,"Test Failed:" +result.getMethod().getMethodName());
+		
 		try {
-			takescreenShot(result.getMethod().getMethodName());
+			takescreenShot(driver, "./snaps/"+result.getName()+".png");
+			test.log(Status.FAIL,"Test Failed:"+result.getName(),MediaEntityBuilder.createScreenCaptureFromPath("./snaps/"+result.getName()+".png").build());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

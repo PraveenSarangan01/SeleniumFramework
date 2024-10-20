@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -37,10 +35,21 @@ public class MagentoBase implements MagentoAPI {
 	public static RemoteWebDriver driver=null;
 	long timeOut=10;
 	long maxTimeOut=10;
-	WebDriverWait wait=null;
+	protected static WebDriverWait wait=null;
 	protected static ExtentReports extent;
 	
 	protected static ExtentTest exten;
+	
+	public static final String expectedTitle = "Guru99 Bank Manager HomePage";
+    public static final String expectedPop = "User or Password is not valid";
+    public static final String pattern = ":";
+    public static final String firstPattern= "mngr";
+    public static final String secondPattern = "[0-9]+";
+    public static final String oldpssword="Mngr@0012";
+    public static final String newpassword="Mng@r0002";
+    public static final String expectedAlert="Old Password is incorrect";//Old Password is incorrect
+    public static final String pageHeading="Change Password";
+
 
 	public void setUp(String url) {
 		driver = new ChromeDriver();
@@ -170,9 +179,17 @@ public class MagentoBase implements MagentoAPI {
 	
 	
 	
-	public String readProperty( String value) throws FileNotFoundException, IOException {
+	public String readProperty( String value)  {
 		Properties read = new Properties();
-		read.load(new FileInputStream("./config.property"));
+		try {
+			read.load(new FileInputStream("./config.property"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String property = read.getProperty(value);
 		
 		return property;
@@ -180,14 +197,15 @@ public class MagentoBase implements MagentoAPI {
 		
 	}
 	
-	public void takescreenShot(String methodName) throws IOException {
-		Date d= new Date();
-		SimpleDateFormat df= new SimpleDateFormat("YYYY_MM_dd_hh_mm_ss");
-		String timeStamp = df.format(d);
+	public void takescreenShot(RemoteWebDriver driver,String path) throws IOException {
+		//Date d= new Date();
+		//SimpleDateFormat df= new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
+		//String timeStamp = df.format(d);
 		//String timeStamp = d.toString().replace(':','_').replace(" ", "");
 		TakesScreenshot ts = (TakesScreenshot)driver;
 		File screenshotAs = ts.getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshotAs, new File("./snaps/"+methodName+timeStamp+".png"));
+		FileUtils.copyFile(screenshotAs, new File(path));
+	
 	}
 	
 	public ExtentReports extentReport() {
@@ -209,6 +227,12 @@ public class MagentoBase implements MagentoAPI {
 
 	}
 	
+	public void SetBrowserAndUrl() {
+		String url;
+		url = readProperty("url");
+		SetUp(Browser.firefox, url);
+		
+	}
 
 	
 /**

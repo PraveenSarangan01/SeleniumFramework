@@ -28,8 +28,8 @@ public class TC001 extends MagentoBase{
 	 * @throws InterruptedException 
 	 */
 	
-	@Test(priority = 2)
-	public void login() throws FileNotFoundException, IOException, InterruptedException {
+	@Test
+	public  void login() throws FileNotFoundException, IOException, InterruptedException {
 		
 		
 		
@@ -44,6 +44,7 @@ public class TC001 extends MagentoBase{
 		
 		userid.sendKeys(userName);
 		String password = readProperty("password");
+		
 		WebElement pass= driver.findElementByXPath("//input[@name='password']");
 	
 		pass.sendKeys(password);
@@ -53,38 +54,6 @@ public class TC001 extends MagentoBase{
 		
 		Thread.sleep(3000);
 	
-	}
-	@Test(priority = 1)
-	public  void verifyLogin() throws FileNotFoundException, IOException {
-		
-		
-		
-		String url = readProperty("url");
-		SetUp(Browser.chrome, url);
-		String username = readProperty("user");
-		String password = readProperty("password");
-
-		WebElement userid = driver.findElementByXPath("//input[@name='ui']");
-		
-		userid.sendKeys(username);
-		
-		WebElement pass= driver.findElementByXPath("//input[@name='password']");
-		
-		pass.sendKeys(password);
-		
-		driver.findElementByXPath("//input[@name='btnLogin']").click();
-		WebElement title = driver.findElementByXPath("//h2[@class='barone']");
-		String text = title.getText();
-		String expectedText="Guru99 Bank";
-		if(text.equals(expectedText)) {
-			System.out.println("Expected and actual title are same");
-		}
-		else
-		{
-			System.out.println("Expected and actual title are not same");
-		}
-		
-		
 	}
 	
 	
