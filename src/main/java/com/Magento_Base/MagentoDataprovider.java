@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.testng.annotations.DataProvider;
 
 public class MagentoDataprovider {
-	@DataProvider(name="login",indices = {0})
+	@DataProvider(name="login",indices = {1})
 	public  String[][] readData() throws IOException
 	{
 		String[][] data= ReadExcel.readLoginData();

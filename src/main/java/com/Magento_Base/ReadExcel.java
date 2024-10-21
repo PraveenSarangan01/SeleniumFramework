@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class ReadExcel {
 	@Test
 	public static String[][] readLoginData() throws IOException {
-		String filePath="./logindata.xlsx";
+		String filePath="src\\main\\resources\\testData\\TC008data.xlsx";
 		XSSFWorkbook book=new XSSFWorkbook(filePath);
 		XSSFSheet sheetAt = book.getSheetAt(0);
 		int lastRowNum = sheetAt.getLastRowNum();
