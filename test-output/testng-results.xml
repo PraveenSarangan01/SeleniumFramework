@@ -2,23 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-10-22T01:11:16 IST" name="Default suite" finished-at="2024-10-22T01:11:23 IST" duration-ms="7444">
+  <suite started-at="2024-10-23T00:16:20 IST" name="Default suite" finished-at="2024-10-23T00:16:32 IST" duration-ms="12817">
     <groups>
     </groups>
-    <test started-at="2024-10-22T01:11:16 IST" name="Default test" finished-at="2024-10-22T01:11:23 IST" duration-ms="7444">
-      <class name="TestRunner.TC009">
-        <test-method signature="verifyAfterAadingNewCustomer([Ljava.lang.String;)[pri:0, instance:TestRunner.TC009@6cd28fa7]" started-at="2024-10-22T01:11:17 IST" name="verifyAfterAadingNewCustomer" data-provider="login" finished-at="2024-10-22T01:11:23 IST" duration-ms="6282" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[Ljava.lang.String;@40729f01]]>
-              </value>
-            </param>
-          </params>
+    <test started-at="2024-10-23T00:16:20 IST" name="Default test" finished-at="2024-10-23T00:16:32 IST" duration-ms="12817">
+      <class name="TestRunner.TC010">
+        <test-method signature="verifyNewAccountToNewCustomer()[pri:0, instance:TestRunner.TC010@a530d0a]" started-at="2024-10-23T00:16:20 IST" name="verifyNewAccountToNewCustomer" finished-at="2024-10-23T00:16:32 IST" duration-ms="12730" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyAfterAadingNewCustomer -->
-      </class> <!-- TestRunner.TC009 -->
+        </test-method> <!-- verifyNewAccountToNewCustomer -->
+      </class> <!-- TestRunner.TC010 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
